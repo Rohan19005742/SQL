@@ -123,6 +123,19 @@ select name from language
 order by name desc;
 
 -- 24. List the full names of every actor whose surname ends with '-son' in alphabetical order by their forename.
+
+select first_name, last_name from actor
+where last_name like '%son'
+order by first_name;
+
 -- 25. Which category contains the most films?
 
+select name, count(*) from category
+inner join film_category
+on film_category.category_id = category.category_id
+inner join film
+on film.film_id = film_category.film_id
+group by category.name
+order by count(*) desc
+limit 1;
 
