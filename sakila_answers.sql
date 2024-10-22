@@ -38,8 +38,25 @@ select * from film
 where special_features like '%Deleted%';
 
 -- 11. Using HAVING, reverse-alphabetically list the last names that are not repeated.
+select last_name from actor
+group by last_name
+having count(*) = 1
+order by last_name desc;
+
 -- 12. Using HAVING, list the last names that appear more than once, from highest to lowest frequency.
+select last_name, count(*) from actor
+group by last_name
+having count(*) > 1
+order by count(*) desc;
+
 -- 13. Which actor has appeared in the most films?
+select actor.first_name, actor.last_name, count(*) from actor
+Inner join film, film_actor
+on film.film_id = film_actor.film_id, actor.actor_id = film_actor.actor_id 
+group by last_name
+having count(*) > 1
+order by count(*) desc;
+
 -- 14. When is 'Academy Dinosaur' due?
 -- 15. What is the average runtime of all films?
 -- 16. List the average runtime for every film category.
