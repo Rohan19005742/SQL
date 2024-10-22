@@ -33,6 +33,9 @@ order by length asc limit 10;
 
 -- 9. Find the movies with the longest runtime, without using LIMIT.
 
+SELECT * FROM film
+WHERE length = (SELECT MAX(length) FROM film);
+
 -- 10. Find all movies that have deleted scenes.
 select * from film
 where special_features like '%Deleted%';
